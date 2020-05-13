@@ -78,3 +78,8 @@
 		var movie = document.getElementById("myText").value;
 		apiCall(movie, pageNumber);
 	}
+
+	function register() {
+		var res = $('form').serialize();
+		console.log(res);
+	}
