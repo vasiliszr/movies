@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     @Autowired
-    private UsersDAO user;
+    private UsersDAO usersDAO;
 
     @RequestMapping("/")
     public String HomeController() {
