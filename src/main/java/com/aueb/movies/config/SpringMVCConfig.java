@@ -23,7 +23,6 @@ public class SpringMVCConfig implements WebMvcConfigurer {
         dataSource.setUrl("jdbc:sqlserver://localhost:1433/movies"); //"jdbc:sqlserver://LAPTOP-CFSVBPA4"
         dataSource.setUsername("sa");
         dataSource.setPassword("vasilis19700");
-
         return  dataSource;
     }
 

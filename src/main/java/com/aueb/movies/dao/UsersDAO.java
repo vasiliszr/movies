@@ -1,15 +1,15 @@
 package com.aueb.movies.dao;
 
 import com.aueb.movies.model.Bookmarks;
-import com.aueb.movies.model.Users;
+import com.aueb.movies.model.User;
 
 import java.util.List;
 
 public interface UsersDAO {
 
-    public int register(Users users);
+    public int register(User user);
 
-    public Users login(int id);
+    public User login(int id);
 
     public int saveBookmark(Bookmarks bookmarks);
 

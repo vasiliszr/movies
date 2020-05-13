@@ -16,8 +16,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         AnnotationConfigApplicationContext appContext = new AnnotationConfigApplicationContext();
         appContext.register(SpringMVCConfig.class);
 
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher",
-                                                    new DispatcherServlet((WebApplicationContext) appContext));
+        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet((WebApplicationContext) appContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
     }

@@ -1,7 +1,7 @@
 package com.aueb.movies.dao;
 
 import com.aueb.movies.model.Bookmarks;
-import com.aueb.movies.model.Users;
+import com.aueb.movies.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,19 +18,19 @@ public class UsersDAOImpl implements UsersDAO {
     }
 
     @Override
-    public int register(Users users) {
+    public int register(User user) {
         String sql = "INSERT INTO users(id, email, password) VALUES(?, ?, ?)";
-        return jdbcTemplate.update(sql,  users.getId(), users.getEmail(), users.getPassword());
+        return jdbcTemplate.update(sql,  user.getId(), user.getEmail(), user.getPassword());
     }
 
     @Override
-    public Users login(int id) {
+    public User login(int id) {
         String sql = "SELECT * FROM users WHERE id = " + id;
-        ResultSetExtractor<Users> ext = resultSet -> {
+        ResultSetExtractor<User> ext = resultSet -> {
             if (resultSet.next()) {
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                return new Users(id, email, password);
+                return new User(id, email, password);
             }
             return null;
         };

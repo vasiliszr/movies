@@ -1,12 +1,12 @@
 package com.aueb.movies.model;
 
-public class Users {
+public class User {
 
     private int id;
     private String email;
     private String password;
 
-    public Users(int id, String email, String password) {
+    public User(int id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -38,7 +38,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Credentials{" +
+        return "User{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
