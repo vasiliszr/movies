@@ -79,7 +79,24 @@
 		apiCall(movie, pageNumber);
 	}
 
-	function register() {
-		var res = $('form').serialize();
-		console.log(res);
+	function register (email, password) {
+		var creds = {
+			email : email,
+			password : password,
+		};
+
+		$.ajax({
+			type: 'POST',
+			url: '/register',
+			data: creds,
+			success: function() {
+				$('#msg').append('<p>Register successfull!</p>');
+			},
+			error: function() {
+				alert('error');
+			}			
+		});
 	}
+
+		
+	
