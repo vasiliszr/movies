@@ -19,6 +19,7 @@ public class UsersDAOImpl implements UsersDAO {
 
     @Override
     public int register(User user) {
+        System.out.println(user);
         String sql = "INSERT INTO users(id, email, password) VALUES(?, ?, ?)";
         return jdbcTemplate.update(sql,  user.getId(), user.getEmail(), user.getPassword());
     }

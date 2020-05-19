@@ -20,7 +20,7 @@ public class SpringMVCConfig implements WebMvcConfigurer {
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dataSource.setUrl("jdbc:sqlserver://localhost:1433/movies"); //"jdbc:sqlserver://LAPTOP-CFSVBPA4"
+        dataSource.setUrl("jdbc:sqlserver://LAPTOP-CFSVBPA4"); //"jdbc:sqlserver://LAPTOP-CFSVBPA4" //jdbc:sqlserver://localhost:1433/movies
         dataSource.setUsername("sa");
         dataSource.setPassword("vasilis19700");
         return  dataSource;
