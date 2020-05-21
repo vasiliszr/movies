@@ -2,19 +2,11 @@ package com.aueb.movies.model;
 
 public class Bookmarks {
 
-    private int movie_id;
     private int id;
+    private int movie_id;
 
-    public Bookmarks(int movie_id, int id) {
-        this.movie_id = movie_id;
+    public Bookmarks(int id, int movie_id) {
         this.id = id;
-    }
-
-    public int getMovie_id() {
-        return movie_id;
-    }
-
-    public void setMovie_id(int movie_id) {
         this.movie_id = movie_id;
     }
 
@@ -26,6 +18,14 @@ public class Bookmarks {
         this.id = id;
     }
 
+    public int getMovie_id() {
+        return movie_id;
+    }
+
+    public void setMovie_id(int movie_id) {
+        this.movie_id = movie_id;
+    }
+
     @Override
     public String toString() {
         return "Bookmarks{" +
@@ -33,4 +33,5 @@ public class Bookmarks {
                 ", id=" + id +
                 '}';
     }
+
 }
