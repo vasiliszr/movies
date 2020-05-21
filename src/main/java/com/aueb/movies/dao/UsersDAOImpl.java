@@ -49,7 +49,7 @@ public class UsersDAOImpl implements UsersDAO {
         String sql = "SELECT movie_id FROM bookmarks WHERE bookmarks.id = " + id;
         RowMapper<Bookmarks> rowMapper = (resultSet, i) -> {
             int movie_id = resultSet.getInt("movie_id");
-            return new Bookmarks(id, movie_id);
+            return new Bookmarks(movie_id, id);
         };
         return jdbcTemplate.query(sql, rowMapper);
     }
