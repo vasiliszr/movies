@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-    <script src = "/javascript/script.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
-    <meta charset = "utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    <div class = "header">
-        <h1>Movies Info</h1>
-        <input type="text" id="myText" placeholder="Search for a movie..." onkeyup="mainFunction()">
-        <ul>
-            <li> <a href="/" th:href="@{/login}">Login</a> </li>
-            <li> <a href="/" th:href="@{/register}">Register</a></li>
-        </ul>
-    </div>
 
-    <form class="modal-content animate" action="@{/login}" method="post">
-        <div class="container">
-            <label for="email_log"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" id="email_log" name="email" required>
+<html lang="en">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src = "/javascript/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+        <meta charset = "utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+    </head>
 
-            <label for="psw_log"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" id="psw_log" name="password" required>
-
-            <button class="modalbtn" type="submit">Login</button>
+    <body>
+        <div class = "header">
+            <h1>Movies Info</h1>
+            <input type="text" id="myText" placeholder="Search for a movie..." onkeyup="mainFunction()">
+            <ul>
+                <li> <a href="http://localhost:8080/login">Login</a> </li>
+                <li> <a href="http://localhost:8080/register">Register</a></li>
+            </ul>
         </div>
-    </form>
 
-</body>
+        <form class="modal-content animate" action="http://localhost:8080/login" method="post">
+            <div class="container">
+                <label for="email_log"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" id="email_log" name="email" required>
+
+                <label for="psw_log"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" id="psw_log" name="password" required>
+
+                <button class="modalbtn" type="submit" onclick="login(email, password)">Login</button>
+            </div>
+        </form>
+
+    </body>
 </html>
