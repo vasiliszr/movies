@@ -1,15 +1,19 @@
 package com.aueb.movies.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class User {
 
     @Id
+    @GeneratedValue
     private int id;
     private String email;
     private String password;
+
+    public User() {}
 
     public User(int id, String email, String password) {
         this.id = id;
