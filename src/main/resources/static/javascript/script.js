@@ -109,6 +109,6 @@ function register(email, password, password2) {
            console.log(this.responseText);
        }
     };
-    var data = JSON.stringify(creds);
+    let data = JSON.stringify(creds);
     xhr.send(data);
 }
