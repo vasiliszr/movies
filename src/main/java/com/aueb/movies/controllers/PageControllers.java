@@ -1,10 +1,10 @@
-package com.aueb.movies.controller;
+package com.aueb.movies.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class RegisterController {
+public class PageControllers {
 
     @GetMapping("/")
     public String HomeController() {
@@ -23,6 +23,5 @@ public class RegisterController {
         System.out.println("log get");
         return "login";
     }
-
 
 }
