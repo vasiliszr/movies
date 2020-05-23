@@ -4,7 +4,9 @@ import com.aueb.movies.model.User;
 import com.aueb.movies.repo.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +16,17 @@ public class RestControllers {
 
     @Autowired
     private UserService userService;
-
     private List<User> users = new ArrayList<>();
 
-    @PostMapping("/register")
+    @PostMapping(value = "/register", consumes = "application/json")
     public User success(@RequestBody User user) {
         System.out.println("reg post");
         users.add(user);
+        User existed = userService.findByEmail(user.getEmail());
+        if (existed != null){
+            System.out.println("user already exists!");
+            return new User();
+        }
         userService.save(user);
         System.out.println(users);
         return user;
