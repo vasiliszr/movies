@@ -13,7 +13,7 @@ public class PageControllers {
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String RegisterController() {
         System.out.println("reg get");
         return "register";
     }
@@ -22,6 +22,18 @@ public class PageControllers {
     public String LoginController() {
         System.out.println("log get");
         return "login";
+    }
+
+    @GetMapping("/home")
+    public String UserHomeController() {
+        System.out.println("user home");
+        return "home";
+    }
+
+    @GetMapping("/bookmarks")
+    public String BookmarksController() {
+        System.out.println("bookmarks");
+        return "bookmarks";
     }
 
 }

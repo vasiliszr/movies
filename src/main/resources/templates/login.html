@@ -13,7 +13,7 @@
 
     <body>
         <div class = "header">
-            <h1>Movies Info</h1>
+            <h1><a href="http://localhost:8080">Movies Info</a></h1>
             <input type="text" id="myText" placeholder="Search for a movie..." onkeyup="mainFunction()">
             <ul>
                 <li> <a href="http://localhost:8080/login">Login</a> </li>
@@ -21,7 +21,7 @@
             </ul>
         </div>
 
-        <form class="modal-content animate" action="http://localhost:8080/login" method="post" enctype="application/json">
+        <form class="myForm" action="http://localhost:8080/login" method="post">
             <div class="container">
                 <label for="email_log"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" id="email_log" name="email" required>
