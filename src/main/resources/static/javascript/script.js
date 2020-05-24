@@ -80,35 +80,31 @@ function previousPage(pageNumber) {
 }
 
 function register(email, password, password2) {
-    var creds = {"email": email, "password": password};
+    let credentials = {"email": email, "password": password};
 
-    // $.post('http://localhost:8080/register', creds, function(response) {
-    //     var resp = JSON.parse(response);
-    //     console.log(resp);
-    //     }, 'application/json');
+    $.ajax({
+        url: "http://localhost:8080/register",
+        type: "post",
+        data: credentials,
+        contentType: "application/json",
+        dataType: "json",
+		success: function () {}
+        // success: function(data){
+        //     var resp = JSON.parse(data);
+        //     if(resp.success)
+        //         console.log(resp);
+        // }
+    })
 
-    // $.ajax({
-    //     url: "http://localhost:8080/register",
-    //     type: "post",
-    //     data: creds,
-    //     contentType: "application/json",
-    //     dataType: "json",
-    //     success: function(data){
-    //         var resp = JSON.parse(data);
-    //         if(resp.success)
-    //             console.log(resp);
-    //     }
-    // })
-
-    let xhr = new XMLHttpRequest();
-    let url = "'http://localhost:8080/register";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onreadystatechange = function () {
-       if (xhr.readyState === 4 && xhr.status === 200) {
-           console.log(this.responseText);
-       }
-    };
-    let data = JSON.stringify(creds);
-    xhr.send(data);
+    // let xhr = new XMLHttpRequest();
+    // let url = "'http://localhost:8080/register";
+    // xhr.open("POST", url, true);
+    // xhr.setRequestHeader("Content-Type", "application/json");
+    // xhr.onreadystatechange = function () {
+    //    if (xhr.readyState === 4 && xhr.status === 200) {
+    //        console.log(this.responseText);
+    //    }
+    // };
+    // let data = JSON.stringify(credentials);
+    // xhr.send(data);
 }
