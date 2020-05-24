@@ -8,55 +8,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
 public class RestControllers {
 
     @Autowired
     private UserService userService;
-    private List<User> users = new ArrayList<>();
 
-    @PostMapping(value = "/register", consumes = "application/json")
-    public User success(@RequestBody User user) {
-        System.out.println("reg post");
-        users.add(user);
+    @PostMapping("/register")
+    public User Register(@RequestBody User user) {
         User existed = userService.findByEmail(user.getEmail());
-        if (existed != null){
-            System.out.println("user already exists!");
-            return new User();
+        if (existed != null) {
+            System.out.println(user + " : user already exists");
+            return new User(-1);
         }
         userService.save(user);
-        System.out.println(users);
-        return user;
+        System.out.println(user + " : new user created");
+        return new User(user.getId(), user.getEmail());
     }
 
     @PostMapping("/login")
-    public User log(@RequestBody User user) {
-        System.out.println("log post");
+    public User Login(@RequestBody User user) {
         User log = userService.findByEmail(user.getEmail());
-        User logged = null;
-        String errormsg = null;
-        for (User u: users) {
-            if (u.getEmail().equals(user.getEmail())) {
-                if (u.getPassword().equals(user.getPassword())) {
-                    logged = u;
-                    break;
-                } else {
-                    errormsg = "invalid password";
-                    break;
-                }
-            }
-            errormsg = "user no found" ;
-        }
-
-        if (logged != null) {
-            System.out.println("login successful --- " + logged);
+        if (log == null) {
+            System.out.println(user + " : user not found");
+            return new User(-1);
         } else {
-            System.out.println("login failed --- " + errormsg);
+            if (user.getPassword().equals(log.getPassword())) {
+                System.out.println(user + " : user connected");
+                return new User(log.getId(), log.getEmail());
+            } else {
+                System.out.println(user + " : wrong password");
+                return new User(-2);
+            }
         }
-        return log;
     }
 
 }

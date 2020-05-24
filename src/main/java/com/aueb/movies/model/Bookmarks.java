@@ -1,9 +1,16 @@
 package com.aueb.movies.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Bookmarks {
 
-    private int id;
+    @Id
+    @GeneratedValue
     private int movie_id;
+    private int id;
 
     public Bookmarks(int id, int movie_id) {
         this.id = id;

@@ -7,32 +7,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageControllers {
 
     @GetMapping("/")
-    public String HomeController() {
-        System.out.println("home");
+    public String HomePage() {
         return "index";
     }
 
     @GetMapping("/register")
-    public String RegisterController() {
-        System.out.println("reg get");
+    public String RegisterPage() {
         return "register";
     }
 
     @GetMapping("/login")
-    public String LoginController() {
-        System.out.println("log get");
+    public String LoginPage() {
         return "login";
     }
 
     @GetMapping("/home")
-    public String UserHomeController() {
-        System.out.println("user home");
+    public String UserHomePage() {
         return "home";
     }
 
     @GetMapping("/bookmarks")
-    public String BookmarksController() {
-        System.out.println("bookmarks");
+    public String BookmarksPage() {
         return "bookmarks";
     }
 
