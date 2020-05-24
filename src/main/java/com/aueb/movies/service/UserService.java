@@ -1,6 +1,7 @@
-package com.aueb.movies.repo;
+package com.aueb.movies.service;
 
 import com.aueb.movies.model.User;
+import com.aueb.movies.repo.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

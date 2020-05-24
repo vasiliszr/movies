@@ -1,18 +1,23 @@
 package com.aueb.movies.controllers;
 
+import com.aueb.movies.model.Bookmark;
 import com.aueb.movies.model.User;
-import com.aueb.movies.repo.UserService;
+import com.aueb.movies.service.BookmarkService;
+import com.aueb.movies.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class RestControllers {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BookmarkService bookmarkService;
 
     @PostMapping("/register")
     public User Register(@RequestBody User user) {
@@ -41,6 +46,18 @@ public class RestControllers {
                 return new User(-2);
             }
         }
+    }
+
+    @GetMapping("/bookmarks/{id}")
+    public List<Bookmark> GetBookmarks(@PathVariable("id") int id) {
+        System.out.println("returning bookmarks for user " + id);
+       return  bookmarkService.findAllById(id);
+    }
+
+    @PostMapping("/home/{id}/{movie_id}")
+    public void SaveBookmark(@PathVariable("id") int id, @PathVariable("movie_id") int movie_id) {
+        Bookmark bookmark = new Bookmark(id, movie_id);
+        bookmarkService.save(bookmark);
     }
 
 }
