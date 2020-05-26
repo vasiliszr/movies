@@ -41,7 +41,7 @@ function moreInformation(ID,pageNumber) {
 	$('#img').empty();
 	$('#details').empty();
 	$('#intro').empty();
-		
+
 	console.log(ID);
 
 	$.getJSON('https://www.omdbapi.com/?&apikey=c5d43602&i=' + encodeURI(ID)).then(function(response) {
@@ -79,32 +79,40 @@ function previousPage(pageNumber) {
 	apiCall(movie, pageNumber);
 }
 
-function register(email, password, password2) {
-    let credentials = {"email": email, "password": password};
+function register() {
+	let email = document.getElementById("email_reg").value;
+	let password = document.getElementById("psw_reg").value;
+	let password2 = document.getElementById("psw-repeat").value;
+    let credentials = {email: email, password: password};
 
-    $.ajax({
-        url: "http://localhost:8080/register",
-        type: "post",
-        data: credentials,
-        contentType: "application/json",
-        dataType: "json",
-		success: function () {}
-        // success: function(data){
-        //     var resp = JSON.parse(data);
-        //     if(resp.success)
-        //         console.log(resp);
-        // }
-    })
+	console.log(credentials);
+	let xhr = new XMLHttpRequest();
+    let url = "http://localhost:8080/register";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function() {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+           console.log(xhr.responseText);
+       }
+    };
+    let data = JSON.stringify(credentials);
+    xhr.send(data);
+}
 
-    // let xhr = new XMLHttpRequest();
-    // let url = "'http://localhost:8080/register";
-    // xhr.open("POST", url, true);
-    // xhr.setRequestHeader("Content-Type", "application/json");
-    // xhr.onreadystatechange = function () {
-    //    if (xhr.readyState === 4 && xhr.status === 200) {
-    //        console.log(this.responseText);
-    //    }
-    // };
-    // let data = JSON.stringify(credentials);
-    // xhr.send(data);
+function login() {
+	let email1 = document.getElementById("email_log").value;
+	let password1 = document.getElementById("psw_log").value;
+	let credentials1 = {email: email1, password: password1};
+
+	let xhr1 = new XMLHttpRequest();
+	let url1 = "http://localhost:8080/login";
+	xhr1.open("POST", url1, true);
+	xhr1.setRequestHeader("Content-Type", "application/json");
+	xhr1.onreadystatechange = function() {
+		if (xhr1.readyState === 4 && xhr1.status === 200) {
+			console.log(xhr1.responseText);
+		}
+	};
+	let data1 = JSON.stringify(credentials1);
+	xhr1.send(data1);
 }

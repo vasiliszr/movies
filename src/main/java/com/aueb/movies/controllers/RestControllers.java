@@ -21,8 +21,8 @@ public class RestControllers {
 
     @PostMapping("/register")
     public User Register(@RequestBody User user) {
-        User existed = userService.findByEmail(user.getEmail());
-        if (existed != null) {
+        User existing = userService.findByEmail(user.getEmail());
+        if (existing != null) {
             System.out.println(user + " : user already exists");
             return new User(-1);
         }
@@ -33,14 +33,14 @@ public class RestControllers {
 
     @PostMapping("/login")
     public User Login(@RequestBody User user) {
-        User log = userService.findByEmail(user.getEmail());
-        if (log == null) {
+        User existing = userService.findByEmail(user.getEmail());
+        if (existing == null) {
             System.out.println(user + " : user not found");
             return new User(-1);
         } else {
-            if (user.getPassword().equals(log.getPassword())) {
+            if (user.getPassword().equals(existing.getPassword())) {
                 System.out.println(user + " : user connected");
-                return new User(log.getId(), log.getEmail());
+                return new User(existing.getId(), existing.getEmail());
             } else {
                 System.out.println(user + " : wrong password");
                 return new User(-2);
@@ -51,7 +51,7 @@ public class RestControllers {
     @GetMapping("/bookmarks/{id}")
     public List<Bookmark> GetBookmarks(@PathVariable("id") int id) {
         System.out.println("returning bookmarks for user " + id);
-       return  bookmarkService.findAllById(id);
+        return bookmarkService.findAllById(id);
     }
 
     @PostMapping("/home/{id}/{movie_id}")
