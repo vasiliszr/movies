@@ -35,11 +35,11 @@ public class RestControllers {
     public User Login(@RequestBody User user) {
         User existing = userService.findByEmail(user.getEmail());
         if (existing == null) {
-            System.out.println(user + " : user not found");
+            System.out.println(user.getEmail() + " : user not found");
             return new User(-1);
         } else {
             if (user.getPassword().equals(existing.getPassword())) {
-                System.out.println(user + " : user connected");
+                System.out.println(existing + " : user connected");
                 return new User(existing.getId(), existing.getEmail());
             } else {
                 System.out.println(user + " : wrong password");
@@ -55,7 +55,7 @@ public class RestControllers {
     }
 
     @PostMapping("/home/{id}/{movie_id}")
-    public void SaveBookmark(@PathVariable("id") int id, @PathVariable("movie_id") int movie_id) {
+    public void SaveBookmark(@PathVariable("id") int id, @PathVariable("movie_id") String movie_id) {
         Bookmark bookmark = new Bookmark(id, movie_id);
         bookmarkService.save(bookmark);
     }

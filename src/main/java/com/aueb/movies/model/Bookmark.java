@@ -12,11 +12,11 @@ public class Bookmark {
     private int id;
 
     @Id
-    private int movie_id;
+    private String movie_id;
 
     public Bookmark() {}
 
-    public Bookmark(int id, int movie_id) {
+    public Bookmark(int id, String movie_id) {
         this.id = id;
         this.movie_id = movie_id;
     }
@@ -29,11 +29,11 @@ public class Bookmark {
         this.id = id;
     }
 
-    public int getMovie_id() {
+    public String getMovie_id() {
         return movie_id;
     }
 
-    public void setMovie_id(int movie_id) {
+    public void setMovie_id(String movie_id) {
         this.movie_id = movie_id;
     }
 
