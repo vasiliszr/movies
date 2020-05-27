@@ -1,3 +1,5 @@
+var userID;
+
 function mainFunction () {
 	$('#Page').empty();
 
@@ -69,13 +71,13 @@ function moreInformation(ID,pageNumber) {
 
 function nextPage(pageNumber) {
 	pageNumber++;
-	var movie = document.getElementById("myText").value;
+	let movie = document.getElementById("myText").value;
 	apiCall(movie, pageNumber);
 }
 
 function previousPage(pageNumber) {
 	pageNumber--;
-	var movie = document.getElementById("myText").value;
+	let movie = document.getElementById("myText").value;
 	apiCall(movie, pageNumber);
 }
 
@@ -85,7 +87,6 @@ function register() {
 	let password2 = document.getElementById("psw-repeat").value;
     let credentials = {email: email, password: password};
 
-	console.log(credentials);
 	let xhr = new XMLHttpRequest();
     let url = "http://localhost:8080/register";
     xhr.open("POST", url, true);
@@ -100,19 +101,41 @@ function register() {
 }
 
 function login() {
-	let email1 = document.getElementById("email_log").value;
-	let password1 = document.getElementById("psw_log").value;
-	let credentials1 = {email: email1, password: password1};
+	let email = document.getElementById("email_log").value;
+	let password = document.getElementById("psw_log").value;
+	let credentials = {email: email, password: password};
 
-	let xhr1 = new XMLHttpRequest();
-	let url1 = "http://localhost:8080/login";
-	xhr1.open("POST", url1, true);
-	xhr1.setRequestHeader("Content-Type", "application/json");
-	xhr1.onreadystatechange = function() {
-		if (xhr1.readyState === 4 && xhr1.status === 200) {
-			console.log(xhr1.responseText);
+	let xhr = new XMLHttpRequest();
+	let url = "http://localhost:8080/login";
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 && xhr.status === 200) {
+			console.log(xhr.responseText);
 		}
 	};
-	let data1 = JSON.stringify(credentials1);
-	xhr1.send(data1);
+	let data = JSON.stringify(credentials);
+	xhr.send(data);
+}
+
+function bookmarks() {
+	$('#demo').empty();
+	$('#Page').empty();
+	$('#img').empty();
+	$('#details').empty();
+
+	userID = 1;
+	$.getJSON('http://localhost:8080/bookmarks/' + encodeURI(userID)).then(function(response) {
+		console.log(response);
+		let i;
+		for (i = 0; i < response.length; i++) {
+			let obj = response[i];
+			let value = obj["movie_id"];
+			$.getJSON('https://www.omdbapi.com/?&apikey=c5d43602&i=' + encodeURI(value)).then(function(data) {
+				$('#demo').append('<p><strong>' + data.Title + ' (' + data.Year + ')</strong></p>');
+				$('#demo').append('<img src="' + data.Poster + '"><br>');
+				$('#demo').append(('<button onclick="moreInformation(\'' + value + '\',\'' + 1 + '\')">More Information</button>'));
+			});
+		}
+	});
 }
