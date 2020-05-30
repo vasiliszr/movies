@@ -4,6 +4,9 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src = "/javascript/script.js"></script>
+        <script>
+            window.onload = redirection();
+        </script>
         <link rel="stylesheet" type="text/css" href="/css/style.css">
         <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
         <meta charset = "utf-8">
@@ -21,6 +24,8 @@
             </ul>
         </div>
 
+        <div id="exp"></div>
+
         <form class="myForm">
             <div class="container">
                 <label for="email_log"><b>Email</b></label>
@@ -30,6 +35,7 @@
                 <input type="password" placeholder="Enter Password" id="psw_log" name="password" required>
 
                 <button class="modalbtn" onclick="login()">Login</button>
+                <p>Don't have an account? <a href="http://localhost:8080/register">Sign up now.</a></p>
             </div>
         </form>
     </body>
