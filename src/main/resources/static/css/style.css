@@ -139,7 +139,24 @@ input[type=text]:focus, input[type=password]:focus {
 .modalbtn:hover {
     opacity: 0.8;
 }
-  
+
+.already {
+    text-align: center;
+}
+
+.already a:link, .already a:visited {
+    color: #1442c1;
+}
+
+.already a:hover {
+    color: #ff3838;
+    cursor: pointer;
+}
+
+.already a:active {
+    color: #ff1815;
+}
+
 /* breakpoints */
 @media only screen and (max-width: 800px) {
     #myText {
