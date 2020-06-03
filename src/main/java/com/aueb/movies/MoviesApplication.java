@@ -1,3 +1,6 @@
+//Ζαρμπαλάς Βασίλειος A.M:3160034
+//Σταματίου Κωνσταντίνος A.M:3150245
+
 package com.aueb.movies;
 
 import org.springframework.boot.SpringApplication;

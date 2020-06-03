@@ -1,7 +1,7 @@
-var userID = null;
+var userID=null;
 
 function redirection(){
-	userID=sessionStorage.getItem("ID");
+	userID=sessionStorage.getItem("ID")
 	if(userID>0){
 		window.location.replace('http://localhost:8080/home');
 	}
@@ -62,8 +62,11 @@ function moreInformation(ID,pageNumber,session) {
 
 	$.getJSON('https://www.omdbapi.com/?&apikey=c5d43602&i=' + encodeURI(ID)).then(function(response) {
 		console.log(response);
-
-		$('#img').append('<img src="' + response.Poster + '">');
+		if(response.Poster == "N/A"){
+			$('#img').append('<img src="images/pic1.jpg"><br>');
+		}else {
+			$('#img').append('<img src="' + response.Poster + '">');
+		}
 		$('#details').append('<p> <strong> Movie Title: </strong>'+ response.Title + '</p>');
 		$('#details').append('<p> <strong> Released in: </strong>' + response.Released + '</p>');
 		$('#details').append('<p> <strong> Actors: </strong>' + response.Actors + '</p>');
@@ -105,14 +108,14 @@ function register() {
 	let password = document.getElementById("psw_reg").value;
 	let password2 = document.getElementById("psw-repeat").value;
 	let credentials = {"email": email, "password": password};
-	if (email!="" && password!="" && password2===password) {
+	if(email!="" && password!="" && password2===password) {
 		let xhr = new XMLHttpRequest();
 		xhr.open('POST', 'http://localhost:8080/register', false);
 		xhr.setRequestHeader("Content-Type", "application/json");
 		xhr.send(JSON.stringify(credentials));
-	} else if (password2!==password){
+	}else if(password2!==password){
 		$("#exp").append("<p> Please try again! Passwords do no match.</p>")
-	} else {
+	}else{
 		$("#exp").append("<p> Please try again! Something went wrong</p>")
 	}
 }
@@ -157,15 +160,20 @@ function bookmarks() {
 			let value = obj["movie_id"];
 			$.getJSON('https://www.omdbapi.com/?&apikey=c5d43602&i=' + encodeURI(value)).then(function(data) {
 				$('#demo').append('<p><strong>' + data.Title + ' (' + data.Year + ')</strong></p>');
-				$('#demo').append('<img src="' + data.Poster + '"><br>');
+				if(data.Poster == "N/A"){
+					$('#demo').append('<img src="images/pic1.jpg"><br>');
+				}else {
+					$('#demo').append('<img src="' + data.Poster + '"><br>');
+				}
+
 				$('#demo').append(('<button onclick="moreInformation(\'' + value + '\',\'' + 1 + '\',\'' + 2 + '\')">More Information</button>'));
 			});
 		}
 	});
 }
 
-function savemovie(userID,movieID,movie) {
-	if (userID>0) {
+function savemovie(userID,movieID,movie){
+	if(userID>0) {
 		let mybookmark = {userID: userID, movieID: movieID};
 		let xhr = new XMLHttpRequest();
 		let url = "http://localhost:8080/home/" + encodeURI(userID) + "/" + encodeURI(movieID);
@@ -174,8 +182,8 @@ function savemovie(userID,movieID,movie) {
 		let data = JSON.stringify(mybookmark);
 		xhr.send(data);
 		alert(movie + " has been added to 'MyBookmarks'");
-	} else {
-		alert("Please login if you want to save your movies!")
+	}else{
+		alert("Please login if you want to save your movies!");
 		location.replace("http://localhost:8080/login");
 	}
 }
