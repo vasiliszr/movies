@@ -5,8 +5,8 @@ function redirection(){
 	if(userID>0){
 		window.location.replace('http://localhost:8080/home');
 	}
-
 }
+
 function mainFunction () {
 	$('#Page').empty();
 
